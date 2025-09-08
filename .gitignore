@@ -41,5 +41,6 @@
 *.dwo
 
 # user-defined
-.vscode/
+.vs*/
 /build
+out/
