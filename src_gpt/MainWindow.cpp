@@ -1,9 +1,10 @@
+
 #include "MainWindow.h"
 #include <iostream>
 
 MainWindow::MainWindow() : Gtk::ApplicationWindow(), m_Box(Gtk::Orientation::VERTICAL) {
-    set_title("MyMeshViewer");
-    set_default_size(1000, 600);
+    set_title("Main menu example");
+    set_default_size(300, 100);
 
     // ExampleApplication displays the menubar. Other stuff, such as a toolbar,
     // is put into the box.
@@ -37,8 +38,37 @@ MainWindow::MainWindow() : Gtk::ApplicationWindow(), m_Box(Gtk::Orientation::VER
     // Create the toolbar and add it to a container widget:
 
     m_refBuilder = Gtk::Builder::create();
+
+    Glib::ustring ui_info =
+        "<!-- Generated with glade 3.18.3 and then changed manually -->"
+        "<interface>"
+        "  <object class='GtkBox' id='toolbar'>"
+        "    <property name='can_focus'>False</property>"
+        "    <child>"
+        "      <object class='GtkButton' id='toolbutton_new'>"
+        "        <property name='can_focus'>False</property>"
+        "        <property name='tooltip_text' translatable='yes'>New Standard</property>"
+        "        <property name='action_name'>app.newstandard</property>"
+        "        <property name='icon_name'>document-new</property>"
+        "        <property name='hexpand'>False</property>"
+        "        <property name='vexpand'>False</property>"
+        "      </object>"
+        "    </child>"
+        "    <child>"
+        "      <object class='GtkButton' id='toolbutton_quit'>"
+        "        <property name='can_focus'>False</property>"
+        "        <property name='tooltip_text' translatable='yes'>Quit</property>"
+        "        <property name='action_name'>app.quit</property>"
+        "        <property name='icon_name'>application-exit</property>"
+        "        <property name='hexpand'>False</property>"
+        "        <property name='vexpand'>False</property>"
+        "      </object>"
+        "    </child>"
+        "  </object>"
+        "</interface>";
+
     try {
-        m_refBuilder->add_from_file("menu/toolbar.ui");
+        m_refBuilder->add_from_string(ui_info);
     } catch (const Glib::Error& ex) {
         std::cerr << "Building toolbar failed: " << ex.what();
     }

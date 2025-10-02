@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20.0)
-project(Example_App)
+project(GTKmm_App)
 
 # add CMAKE_MODULE_PATH
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
@@ -13,24 +13,22 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0>=4.10)
+pkg_check_modules(EPOXY REQUIRED epoxy)
 
+find_package(glm REQUIRED)
+find_package(OpenGL REQUIRED)
 
-message(STATUS "GTKMM_INCLUDE_DIRS: ${GTKMM_INCLUDE_DIRS}")
-message(STATUS "GTKMM_LIBRARY_DIRS: ${GTKMM_LIBRARY_DIRS}")
-message(STATUS "GTKMM_LIBRARIES: ${GTKMM_LIBRARIES}")
-
-add_executable(${CMAKE_PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC ${GTKMM_INCLUDE_DIRS})
-target_link_directories(${CMAKE_PROJECT_NAME} PUBLIC ${GTKMM_LIBRARY_DIRS})
-target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${GTKMM_LIBRARIES})
+message(STATUS "")
+message(STATUS "[${PROJECT_NAME}] GTKMM_INCLUDE_DIRS: ${GTKMM_INCLUDE_DIRS}")
+message(STATUS "[${PROJECT_NAME}] GTKMM_LIBRARY_DIRS: ${GTKMM_LIBRARY_DIRS}")
+message(STATUS "[${PROJECT_NAME}] GTKMM_LIBRARIES: ${GTKMM_LIBRARIES}")
+message(STATUS "[${PROJECT_NAME}] GTKMM_CFLAGS_OTHER: ${GTKMM_CFLAGS_OTHER}")
+message(STATUS "")
 
 # CMake is gonna read the 'CMakeLists.txt' file located under 'example':
+#add_subdirectory(src_test)
+#add_subdirectory(src_gpt)
 add_subdirectory(src)
-
-# format the source code
-include(ClangTools)
-AddClangFormat(${PROJECT_NAME} "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 # diagnostics with color
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")

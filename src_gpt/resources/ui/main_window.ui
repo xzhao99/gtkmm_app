@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkWindow" id="main_window">
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <child>
+      <object class="GtkBox" id="vbox_main">
+        <property name="orientation">vertical</property>
+        <!-- Menu bar -->
+        <child>
+          <object class="GtkMenuBar" id="menubar">
+            <child>
+              <object class="GtkMenuItem">
+                <property name="label">_File</property>
+                <property name="use-underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <child>
+                      <object class="GtkMenuItem">
+                        <property name="label">_Open</property>
+                        <property name="action">app.open</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem">
+                        <property name="label">_Quit</property>
+                        <property name="action">app.quit</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="label">_Edit</property>
+                <property name="use-underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <child>
+                      <object class="GtkMenuItem">
+                        <property name="label">DummyEdit</property>
+                        <property name="action">win.edit_dummy</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="label">_Filter</property>
+                <property name="use-underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <child>
+                      <object class="GtkMenuItem">
+                        <property name="label">DummyFilter</property>
+                        <property name="action">win.filter_dummy</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuItem">
+                <property name="label">_Help</property>
+                <property name="use-underline">True</property>
+                <child type="submenu">
+                  <object class="GtkMenu">
+                    <child>
+                      <object class="GtkMenuItem">
+                        <property name="label">_About</property>
+                        <property name="action">app.about</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <!-- Toolbar placeholder -->
+        <child>
+          <object class="GtkToolbar" id="toolbar">
+            <toolitem>
+              <property name="icon-name">document-open</property>
+              <property name="tooltip-text">Open mesh</property>
+              <property name="action">app.open</property>
+            </toolitem>
+          </object>
+        </child>
+        <!-- Rest will be added in code (Paned with pipeline & GL) -->
+      </object>
+    </child>
+  </object>
+</interface>

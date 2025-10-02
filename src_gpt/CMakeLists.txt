@@ -1,19 +1,27 @@
+
 # set the current project name
 set(CURR_PROJ_NAME MyMeshViewer)
 
-# add hearders and source
+if (false)
+FILE(GLOB MY_SRC 
+  "${CMAKE_CURRENT_SOURCE_DIR}/*.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+FILE(GLOB MY_HEADERS 
+	"${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+	"${CMAKE_CURRENT_SOURCE_DIR}/*.hpp")
+endif()
+
 set(MY_SRC 
-  "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/MainApplication.cpp"
-  "${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.cpp"
-)
+"${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/Application.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.cpp")
 
 set(MY_HEADERS 
-  "${CMAKE_CURRENT_SOURCE_DIR}/MainApplication.h"
-  "${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/Application.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.h"
 )
 
-# create executable
+
 add_executable(${CURR_PROJ_NAME} ${MY_HEADERS} ${MY_SRC})
 
 # include/link options

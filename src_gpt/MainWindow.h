@@ -1,10 +1,13 @@
 #pragma once
+
+// #include "GLViewport.h"
+// #include "PipelineBrowser.h"
 #include <gtkmm.h>
 
 class MainWindow : public Gtk::ApplicationWindow {
   public:
     MainWindow();
-    virtual ~MainWindow() {};
+    ~MainWindow() override = default;
 
   protected:
     // Signal handlers:

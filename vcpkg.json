@@ -4,6 +4,8 @@
       "name": "gtkmm",
       "version>=": "4.10.0"
     },
-    "pkgconf"
+    "pkgconf",
+    "glm",
+    "libepoxy"
   ]
 }
