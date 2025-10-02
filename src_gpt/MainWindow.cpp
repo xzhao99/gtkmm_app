@@ -2,13 +2,13 @@
 #include "MainWindow.h"
 #include <iostream>
 
-MainWindow::MainWindow() : Gtk::ApplicationWindow(), m_Box(Gtk::Orientation::VERTICAL) {
+MainWindow::MainWindow() : Gtk::ApplicationWindow(), m_main_vbox(Gtk::Orientation::VERTICAL) {
     set_title("Main menu example");
     set_default_size(300, 100);
 
     // ExampleApplication displays the menubar. Other stuff, such as a toolbar,
     // is put into the box.
-    set_child(m_Box);
+    set_child(m_main_vbox);
 
     // Create actions for menus and toolbars.
     // We can use add_action() because Gtk::ApplicationWindow derives from Gio::ActionMap.
@@ -77,7 +77,7 @@ MainWindow::MainWindow() : Gtk::ApplicationWindow(), m_Box(Gtk::Orientation::VER
     if (!toolbar)
         g_warning("toolbar not found");
     else
-        m_Box.append(*toolbar);
+        m_main_vbox.append(*toolbar);
 }
 
 void MainWindow::on_menu_others() { std::cout << "A menu item was selected." << std::endl; }

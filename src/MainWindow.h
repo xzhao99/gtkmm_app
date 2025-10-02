@@ -1,5 +1,5 @@
 #pragma once
-#include <gtkmm.h>
+#include "MyGLArea.h"
 
 class MainWindow : public Gtk::ApplicationWindow {
   public:
@@ -15,8 +15,8 @@ class MainWindow : public Gtk::ApplicationWindow {
     void on_menu_toggle();
 
     // Child widgets:
-    Gtk::Box m_Box;
-
+    Gtk::Box m_main_vbox;
+    MyGLArea m_gl_area; // Our OpenGL area
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
 
     // Two sets of choices:

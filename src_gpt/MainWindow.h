@@ -18,7 +18,7 @@ class MainWindow : public Gtk::ApplicationWindow {
     void on_menu_toggle();
 
     // Child widgets:
-    Gtk::Box m_Box;
+    Gtk::Box m_main_vbox;
 
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
 

@@ -2,6 +2,18 @@
 
 Create a simple app using the GTKmm library
 
+- Menubar
+- Toolbar
+- Workspace(Horizontal)
+  - file panel(Vertical)
+    - pipeline browser
+    - property viewer/editor
+  - rendering window(Vertical)
+    - toolbar
+    - rendering area
+  - Data inspector area
+- Status bar
+
 ## build
 
 ```[]

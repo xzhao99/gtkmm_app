@@ -25,9 +25,7 @@ void MainApplication::on_startup() {
 
     // File|New sub menu:
     add_action("newstandard", sigc::mem_fun(*this, &MainApplication::on_menu_file_new_generic));
-
     add_action("newfoo", sigc::mem_fun(*this, &MainApplication::on_menu_file_new_generic));
-
     add_action("newgoo", sigc::mem_fun(*this, &MainApplication::on_menu_file_new_generic));
 
     // File menu:
@@ -97,7 +95,7 @@ void MainApplication::on_menu_file_new_generic() {
 
 void MainApplication::on_menu_file_quit() {
     std::cout << G_STRFUNC << std::endl;
-    quit(); // Not really necessary, when Gtk::Widget::set_visible(false) is called.
+    // quit(); // Not really necessary, when Gtk::Widget::set_visible(false) is called.
 
     // Gio::Application::quit() will make Gio::Application::run() return,
     // but it's a crude way of ending the program. The window is not removed
@@ -107,8 +105,14 @@ void MainApplication::on_menu_file_quit() {
     // must remove the window from the application. One way of doing this
     // is to hide the window.
     std::vector<Gtk::Window*> windows = get_windows();
-    if (windows.size() > 0)
-        windows[0]->set_visible(false); // In this simple case, we know there is only one window.
+    if (windows.size() > 0) {
+        for (auto& win : windows) {
+            win->set_visible(false);
+        }
+
+        // In this simple case, we know there is only one window.
+        // windows[0]->set_visible(false);
+    }
 }
 
 void MainApplication::on_menu_help_about() {

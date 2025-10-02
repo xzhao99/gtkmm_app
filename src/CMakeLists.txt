@@ -6,11 +6,13 @@ set(MY_SRC
   "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/MainApplication.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/MyGLArea.cpp"
 )
 
 set(MY_HEADERS 
   "${CMAKE_CURRENT_SOURCE_DIR}/MainApplication.h"
   "${CMAKE_CURRENT_SOURCE_DIR}/MainWindow.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/MyGLArea.h"
 )
 
 # create executable

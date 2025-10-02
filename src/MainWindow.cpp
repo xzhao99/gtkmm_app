@@ -1,18 +1,20 @@
 #include "MainWindow.h"
 #include <iostream>
 
-MainWindow::MainWindow() : Gtk::ApplicationWindow(), m_Box(Gtk::Orientation::VERTICAL) {
+// -----------------------------------------------------------------------------------------------
+MainWindow::MainWindow() : Gtk::ApplicationWindow(), m_main_vbox(Gtk::Orientation::VERTICAL, 10) {
     set_title("MyMeshViewer");
     set_default_size(1000, 600);
 
-    // ExampleApplication displays the menubar. Other stuff, such as a toolbar,
-    // is put into the box.
-    set_child(m_Box);
+    // MainApplication displays the menubar.
+    // Other stuffs, such as the toolbar and workspace, are put into the box.
+    m_main_vbox.set_margin(12);
+    set_child(m_main_vbox);
 
     // Create actions for menus and toolbars.
     // We can use add_action() because Gtk::ApplicationWindow derives from Gio::ActionMap.
     // This Action Map uses a "win." prefix for the actions.
-    // Therefore, for instance, "win.copy", is used in ExampleApplication::on_startup()
+    // Therefore, for instance, "win.copy", is used in MainApplication::on_startup()
     // to layout the menu.
 
     // Edit menu:
@@ -44,14 +46,22 @@ MainWindow::MainWindow() : Gtk::ApplicationWindow(), m_Box(Gtk::Orientation::VER
     }
 
     auto toolbar = m_refBuilder->get_widget<Gtk::Box>("toolbar");
-    if (!toolbar)
+    if (!toolbar) {
         g_warning("toolbar not found");
-    else
-        m_Box.append(*toolbar);
+    } else {
+        m_main_vbox.append(*toolbar);
+    }
+
+    // append GLArea
+    m_gl_area.set_hexpand(true);
+    m_gl_area.set_vexpand(true);
+    m_main_vbox.append(m_gl_area);
 }
 
+// -----------------------------------------------------------------------------------------------
 void MainWindow::on_menu_others() { std::cout << "A menu item was selected." << std::endl; }
 
+// -----------------------------------------------------------------------------------------------
 void MainWindow::on_menu_choices(const Glib::ustring& parameter) {
     // The radio action's state does not change automatically:
     m_refChoice->change_state(parameter);
@@ -65,6 +75,7 @@ void MainWindow::on_menu_choices(const Glib::ustring& parameter) {
     std::cout << message << std::endl;
 }
 
+// -----------------------------------------------------------------------------------------------
 void MainWindow::on_menu_choices_other(int parameter) {
     // The radio action's state does not change automatically:
     m_refChoiceOther->change_state(parameter);
@@ -78,6 +89,7 @@ void MainWindow::on_menu_choices_other(int parameter) {
     std::cout << message << std::endl;
 }
 
+// -----------------------------------------------------------------------------------------------
 void MainWindow::on_menu_toggle() {
     bool active = false;
     m_refToggle->get_state(active);
