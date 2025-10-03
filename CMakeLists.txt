@@ -20,6 +20,18 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# For SHARED and MODULE libraries, POSITION_INDEPENDENT_CODE is ON by default.
+# For executables and STATIC libraries, it's OFF by default.
+include(CheckPIESupported)
+check_pie_supported(OUTPUT_VARIABLE output LANGUAGES C CXX) # <output> var has details about error!
+if(CMAKE_C_LINK_PIE_SUPPORTED OR CMAKE_CXX_LINK_PIE_SUPPORTED)
+	message(STATUS "Current compiler supports PIE at the link time.\n")
+	set(CMAKE_POSITION_INDEPENDENT_CODE OFF)
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -no-pie")
+else()
+	message(WARNING "PIE is NOT supported at link time. output message: \n${output}")
+endif()
+
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0>=4.10)
 pkg_check_modules(EPOXY REQUIRED epoxy)

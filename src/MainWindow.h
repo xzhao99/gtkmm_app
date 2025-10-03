@@ -1,5 +1,7 @@
 #pragma once
-#include "MyGLArea.h"
+#include "MyGLArea.h" // include epoxy/gl.h which must before mwinit.h(has GL/gl.h)
+// after epoxy/gl.h
+#include "MwGLArea.h" // include mwinit.h -> GL/gl.h
 
 class MainWindow : public Gtk::ApplicationWindow {
   public:
@@ -16,7 +18,8 @@ class MainWindow : public Gtk::ApplicationWindow {
 
     // Child widgets:
     Gtk::Box m_main_vbox;
-    MyGLArea m_gl_area; // Our OpenGL area
+    // MyGLArea m_gl_area; // OpenGL area
+    MwGLArea m_gl_area; // MW OpenGL area
     Glib::RefPtr<Gtk::Builder> m_refBuilder;
 
     // Two sets of choices:
